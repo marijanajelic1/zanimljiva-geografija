@@ -1,0 +1,45 @@
+﻿<Window x:Class="ZanimljivaGeografija.CreateQuestion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZanimljivaGeografija"
+        mc:Ignorable="d"
+        Title="CreateQuestion" Height="450" Width="800">
+    <Grid Background="White">
+
+        <Image Source="C:\Users\mjeli\source\repos\WpfApp1\WpfApp1\background.png" Stretch="UniformToFill" />
+
+        <Border BorderBrush="#aaabb8" BorderThickness="1" CornerRadius="5" Padding="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="3" Color="#25274D" Opacity="0.5" BlurRadius="5"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Dodavanje pitanja" Foreground="#aaabb8"  FontSize="22" FontWeight="Bold" Margin="0 0 0 10" />
+
+                <StackPanel Margin="0 0 0 5">
+                    <TextBlock Text="Za koje slovo dodajete pitanje?" FontSize="14" Foreground="#aaabb8"/>
+                    <ComboBox x:Name="letterBox" Width="200" Height="25" Margin="0 0 0 5" />
+                </StackPanel>
+
+                <StackPanel Margin="0 0 0 5">
+                    <TextBlock Text="Za koju oblast dodajete pitanje?" FontSize="14" Foreground="#aaabb8"/>
+                    <ComboBox x:Name="oblastBox" Width="200" Height="25" Margin="0 0 0 5" />
+                </StackPanel>
+
+                <StackPanel Margin="0 0 0 5">
+                    <TextBlock Text="Koje je Vaše pitanje?" FontSize="14" Foreground="#aaabb8"/>
+                    <TextBox x:Name="tbQuestion" Width="200" Height="25" Margin="0 0 0 5" />
+                </StackPanel>
+
+                <StackPanel Margin="0 0 0 5">
+                    <TextBlock Text="Odgovor na pitanje je:" FontSize="14" Foreground="#aaabb8"/>
+                    <TextBox x:Name="tbAnswer" Width="200" Height="25" Margin="0 0 0 5" />
+                </StackPanel>
+
+                <Button Content="Dodaj pitanje" Width="100" Height="30" FontSize="18" HorizontalAlignment="Center" Foreground="#25274D" Background="#2e9cca" Click="AddQuestion_Click"/>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
