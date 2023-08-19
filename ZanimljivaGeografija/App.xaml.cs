@@ -17,7 +17,7 @@ namespace ZanimljivaGeografija
         {
             base.OnStartup(e);
 
-         //   DatabaseConnector dbConnector = DatabaseConnector.Instance;
+          //  ConnectorDb dbConnector = ConnectorDb.Instance;
           //  dbConnector.InitializeDatabase();
         }
     }

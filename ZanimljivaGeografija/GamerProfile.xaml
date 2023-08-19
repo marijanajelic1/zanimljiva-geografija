@@ -5,29 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZanimljivaGeografija"
         mc:Ignorable="d"
-        Title="GamerProfile" Height="450" Width="800">
+        Title="GamerProfile" Height="500" Width="850">
     <Grid Background="White">
 
-        <!--- <Image Source="path_to_your_image.png" Stretch="Fill" /> -->
-        <Image Source="C:\Users\mjeli\source\repos\WpfApp1\WpfApp1\background.png" Stretch="UniformToFill" />
+        <Image Source="C:\Users\mjeli\source\repos\ZanimljivaGeografija\ZanimljivaGeografija\Resources\background.png" Stretch="UniformToFill" />
 
         <Border BorderBrush="#aaabb8" BorderThickness="1" CornerRadius="5" Padding="20" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="3" Color="Black" Opacity="0.5" BlurRadius="5"/>
             </Border.Effect>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock FontSize="24" FontWeight="Bold" Margin="0 0 0 10" Foreground="#aaabb8" Name="tbD"/>
+                <TextBlock FontFamily="Consolas" FontSize="24" FontWeight="Bold" Margin="0 0 0 10" Foreground="#aaabb8" Name="tbD"/>
 
                 <StackPanel Margin="0 5 0 5">
-                    <Button Content="Zapocni igru" Width="150" Height="30" FontSize="18" Foreground="#25274D" Background="#2e9cca" Click="GameStart_Click"/>
+                    <Button Content="Započni igru" Width="150" Height="30" FontFamily="Consolas" FontSize="18" Foreground="#25274D" Background="#2e9cca" Click="GameStart_Click"/>
                 </StackPanel>
 
                 <StackPanel Margin="0 5 0 5">
-                    <Button Content="Vidi rezultate" Width="150" Height="30" FontSize="18" Foreground="#25274D" Background="#2e9cca" Click="Score_Click" />
+                    <Button Content="Vidi rezultate" Width="150" Height="30" FontFamily="Consolas" FontSize="18" Foreground="#25274D" Background="#2e9cca" Click="Score_Click" />
                 </StackPanel>
                 
                 <StackPanel Margin="0 5 0 5">
-                    <Button Content="Log out" Width="150" Height="30" FontSize="18" Foreground="#25274D" Background="#2e9cca" Click="LogOut_Click"/>
+                    <Button Content="Izloguj se" Width="150" Height="30" FontFamily="Consolas" FontSize="18" Foreground="#25274D" Background="#2e9cca" Click="LogOut_Click"/>
                 </StackPanel>
 
                    </StackPanel>

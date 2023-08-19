@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -27,34 +28,47 @@ namespace ZanimljivaGeografija
         public CreateQuestion()
         {
             InitializeComponent();
+            SetCenter(this);
             SetInfo();
+        }
+        private void SetCenter(Window window)
+        {
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
         }
 
         private void SetInfo()
         {
             string sql = "SELECT naziv FROM slovo;";
-            DataTable dataTable = new DataTable();
-            dataTable = databaseConnector.ExecuteQueryD(sql);
-            if (dataTable != null && dataTable.Rows.Count > 0)
+            try
             {
-                foreach (DataRow row in dataTable.Rows)
+                DataTable dataTable = new DataTable();
+                dataTable = databaseConnector.ExecuteQueryD(sql);
+                if (dataTable != null && dataTable.Rows.Count > 0)
                 {
-                    string letter = row["naziv"].ToString();
-                    Debug.WriteLine(letter);
-                    letters.Add(letter);
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        string letter = row["naziv"].ToString();
+                        Debug.WriteLine(letter);
+                        letters.Add(letter);
+                    }
+                }
+                letterBox.ItemsSource = letters;
+
+                string sql1 = "SELECT naziv FROM oblast;";
+                dataTable = databaseConnector.ExecuteQueryD(sql1);
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        string o = row["naziv"].ToString();
+                        oblast.Add(o);
+                    }
                 }
             }
-            letterBox.ItemsSource = letters;
-
-            string sql1 = "SELECT naziv FROM oblast;";
-            dataTable = databaseConnector.ExecuteQueryD(sql1);
-            if (dataTable != null && dataTable.Rows.Count > 0)
+            catch (MySqlException x)
             {
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    string o = row["naziv"].ToString();
-                    oblast.Add(o);
-                }
+                MessageBox.Show("Došlo je do greške: " + x);
             }
             oblastBox.ItemsSource = oblast;
         }
@@ -87,54 +101,64 @@ namespace ZanimljivaGeografija
 
 
             DataTable dataTable = new DataTable();
-            string sql = "SELECT id FROM slovo WHERE naziv='" + letter + "';";
-            dataTable = databaseConnector.ExecuteQueryD(sql);
-            if (dataTable != null && dataTable.Rows.Count > 0)
+            try
             {
-                foreach (DataRow row in dataTable.Rows)
+                string sql = "SELECT id FROM slovo WHERE naziv='" + letter + "';";
+                dataTable = databaseConnector.ExecuteQueryD(sql);
+                if (dataTable != null && dataTable.Rows.Count > 0)
                 {
-                    letterId= Convert.ToInt32(row["id"]); 
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        letterId = Convert.ToInt32(row["id"]);
+                    }
                 }
-            }
-            string sql1 = "SELECT id FROM oblast WHERE naziv='" + oblast + "';";
-            dataTable = databaseConnector.ExecuteQueryD(sql);
-            if (dataTable != null && dataTable.Rows.Count > 0)
-            {
-                foreach (DataRow row in dataTable.Rows)
+                string sql1 = "SELECT id FROM oblast WHERE naziv='" + oblast + "';";
+                dataTable = databaseConnector.ExecuteQueryD(sql);
+                if (dataTable != null && dataTable.Rows.Count > 0)
                 {
-                    oblastId = Convert.ToInt32(row["id"]);
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        oblastId = Convert.ToInt32(row["id"]);
+                    }
                 }
-            }
 
-            question = tbQuestion.Text;
-            if (string.IsNullOrEmpty(question))
-            {
-                MessageBox.Show("Unesite pitanje!");
-            }
+                question = tbQuestion.Text;
+                if (string.IsNullOrEmpty(question))
+                {
+                    MessageBox.Show("Unesite pitanje!");
+                }
 
-            answer = tbAnswer.Text;
-            if (!string.IsNullOrEmpty(question))
-            {
-                answer=answer.Replace("š", "s")
-                       .Replace("č", "c")
-                       .Replace("ć", "c")
-                       .Replace("ž", "z")
-                       .Replace("đ", "dj")
-                       .Replace("Š", "S")
-                       .Replace("Č", "C")
-                       .Replace("Ć", "C")
-                       .Replace("Ž", "Z")
-                       .Replace("Đ", "Dj");
-            }
-            else
-            {
-                MessageBox.Show("Unesite odgovor!");
-            }
+                answer = tbAnswer.Text;
+                if (!string.IsNullOrEmpty(question))
+                {
+                    answer = answer.Replace("š", "s")
+                           .Replace("č", "c")
+                           .Replace("ć", "c")
+                           .Replace("ž", "z")
+                           .Replace("đ", "dj")
+                           .Replace("Š", "S")
+                           .Replace("Č", "C")
+                           .Replace("Ć", "C")
+                           .Replace("Ž", "Z")
+                           .Replace("Đ", "Dj");
+                }
+                else
+                {
+                    MessageBox.Show("Unesite odgovor!");
+                }
 
-            string sql2 = "INSERT INTO `pitanje`(`tekst`, `odgovor`, `oblast_id`, `slovo_id`) VALUES ('" + question + "','" + answer + "','" + oblastId + "','" + letterId + "');";
-            Debug.WriteLine(sql2);
-            databaseConnector.ExecuteQuery(sql2);
-            MessageBox.Show("Uspesno ste kreirali pitanje");
+                string sql2 = "INSERT INTO `pitanje`(`tekst`, `odgovor`, `oblast_id`, `slovo_id`) VALUES ('" + question + "','" + answer + "','" + oblastId + "','" + letterId + "');";
+                Debug.WriteLine(sql2);
+                databaseConnector.ExecuteQuery(sql2);
+            }
+            catch (MySqlException x)
+            {
+                MessageBox.Show("Došlo je do greške: " + x);
+            }
+            MessageBox.Show("Uspešno ste kreirali pitanje");
+            AdminProfile adminProfile = new AdminProfile();
+            adminProfile.Show();
+            this.Close();
         }
     }
 }

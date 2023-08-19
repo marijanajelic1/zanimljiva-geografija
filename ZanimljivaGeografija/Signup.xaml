@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZanimljivaGeografija"
         mc:Ignorable="d"
-        Title="Signup" Height="450" Width="800">
+        Title="Signup" Height="500" Width="850">
     <Grid Background="White">
 
-        <Image Source="C:\Users\mjeli\source\repos\WpfApp1\WpfApp1\background.png" Stretch="UniformToFill" />
+        <Image Source="C:\Users\mjeli\source\repos\ZanimljivaGeografija\ZanimljivaGeografija\Resources\background.png" Stretch="UniformToFill" />
 
         <Border VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" Height="25">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="3" Color="Black" Opacity="0.5" BlurRadius="5"/>
             </Border.Effect>
             <Menu Width="60" Height="25" FontSize="16" Foreground="#25274D" Background="#2e9cca">
-                <MenuItem Header="Menu" Width="60" Height="25">
-                    <MenuItem Header="Log in" Click="MenuItem_Click" FontSize="16" Foreground="#25274D" Background="#2e9cca"/>
-                    <MenuItem Header="Go back" Click="MenuItem_Click_1"  FontSize="16" Foreground="#25274D" Background="#2e9cca"/>
+                <MenuItem Header="Meni" FontFamily="Consolas" Width="60" Height="25">
+                    <MenuItem Header="Logovanje" Click="MenuItem_Click" FontFamily="Consolas" FontSize="16" Foreground="#25274D" Background="#2e9cca"/>
+                    <MenuItem Header="Nazad" Click="MenuItem_Click_1"  FontFamily="Consolas" FontSize="16" Foreground="#25274D" Background="#2e9cca"/>
                 </MenuItem>
             </Menu>
         </Border>
@@ -27,39 +27,39 @@
                 <DropShadowEffect ShadowDepth="3" Color="#25274D" Opacity="0.5" BlurRadius="5"/>
             </Border.Effect>
             <StackPanel>
-                <TextBlock Text="Sign Up" Foreground="#aaabb8"  FontSize="22" FontWeight="Bold" Margin="0 0 0 10" />
+                <TextBlock Text="Prijava" Foreground="#aaabb8"  FontFamily="Consolas" FontSize="22" FontWeight="Bold" Margin="0 0 0 10" />
 
                 <StackPanel Margin="0 0 0 5">
-                    <TextBlock Text="Name" FontSize="14" Foreground="#aaabb8"/>
-                    <TextBox x:Name="tbName" Width="200" Height="25" Margin="0 0 0 5" />
+                    <TextBlock Text="Ime" FontFamily="Consolas" FontSize="14" Foreground="#aaabb8"/>
+                    <TextBox x:Name="tbName" Background="Transparent" BorderThickness="2" FontFamily="Consolas" FontSize="14" Width="200" Height="25" Margin="0 0 0 5" />
                 </StackPanel>
 
                 <StackPanel Margin="0 0 0 5">
-                    <TextBlock Text="Surname" FontSize="14" Foreground="#aaabb8"/>
-                    <TextBox x:Name="tbSurname" Width="200" Height="25" Margin="0 0 0 5" />
+                    <TextBlock Text="Prezime" FontFamily="Consolas" FontSize="14" Foreground="#aaabb8"/>
+                    <TextBox x:Name="tbSurname" Background="Transparent" BorderThickness="2" FontFamily="Consolas" FontSize="14" Width="200" Height="25" Margin="0 0 0 5" />
                 </StackPanel>
 
                 <StackPanel Margin="0 0 0 5">
-                    <TextBlock Text="Phone" FontSize="14" Foreground="#aaabb8"/>
-                    <TextBox x:Name="tbPhone" Width="200" Height="25" Margin="0 0 0 5" />
+                    <TextBlock Text="Telefon" FontFamily="Consolas" FontSize="14" Foreground="#aaabb8"/>
+                    <TextBox x:Name="tbPhone" Background="Transparent" BorderThickness="2" FontFamily="Consolas" FontSize="14" Width="200" Height="25" Margin="0 0 0 5" />
                 </StackPanel>
 
                 <StackPanel Margin="0 0 0 5">
-                    <TextBlock Text="Email" FontSize="14" Foreground="#aaabb8"/>
-                    <TextBox x:Name="tbEmail" Width="200" Height="25" Margin="0 0 0 5" />
+                    <TextBlock Text="Email" FontFamily="Consolas" FontSize="14" Foreground="#aaabb8"/>
+                    <TextBox x:Name="tbEmail" Background="Transparent" BorderThickness="2" FontFamily="Consolas" FontSize="14" Width="200" Height="25" Margin="0 0 0 5" />
                 </StackPanel>
                 
                 <StackPanel Margin="0 0 0 5">
-                    <TextBlock Text="Username" FontSize="14" Foreground="#aaabb8"/>
-                    <TextBox x:Name="tbUsername" Width="200" Height="25" Margin="0 0 0 5" />
+                    <TextBlock Text="Korisničko ime" FontFamily="Consolas" FontSize="14" Foreground="#aaabb8"/>
+                    <TextBox x:Name="tbUsername" Background="Transparent" BorderThickness="2" FontFamily="Consolas" FontSize="14" Width="200" Height="25" Margin="0 0 0 5" />
                 </StackPanel>
 
                 <StackPanel Margin="0 0 0 5">
-                    <TextBlock Text="Password" FontSize="14" Foreground="#aaabb8"/>
-                    <PasswordBox x:Name="tbPassword" Width="200" Height="25" Margin="0 0 0 5" />
+                    <TextBlock Text="Šifra" FontFamily="Consolas" FontSize="14" Foreground="#aaabb8"/>
+                    <PasswordBox x:Name="tbPassword" Background="Transparent" BorderThickness="2" FontFamily="Consolas" FontSize="14" Width="200" Height="25" Margin="0 0 0 5" />
                 </StackPanel>
 
-                <Button Content="Sign Up" Width="100" Height="30" FontSize="18" HorizontalAlignment="Center" Foreground="#25274D" Background="#2e9cca" Click="Signup_Click"/>
+                <Button Content="Prijavi se" FontFamily="Consolas" Width="100" Height="30" FontSize="17" HorizontalAlignment="Center" Foreground="#25274D" Background="#2e9cca" Click="Signup_Click"/>
 
             </StackPanel>
         </Border>

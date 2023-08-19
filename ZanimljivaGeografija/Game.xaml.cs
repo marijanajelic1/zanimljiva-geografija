@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -30,24 +31,25 @@ namespace ZanimljivaGeografija
         public string biljka = "";
         List<char> letters = new List<char>
         {
-            'A','B','C','D','E'
+            'A','B','C','D','E','F','G','H','I','J','K','L','M','N'
         };
         public Game()
         {
             InitializeComponent();
+            SetCenter(this);
             GetQuestions();
         }
 
+        private void SetCenter(Window window)
+        {
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
+        }
         private DataTable MakeQuery(char letter, string type)
         {
             DataTable dataTable = new DataTable();
             try
             {
-                /* string sql = @"SELECT p.tekst, p.odgovor FROM pitanje p
-                             INNER JOIN oblast o ON p.oblast_id=o.id
-                             INNER JOIN slovo s ON p.slovo_id=s.id
-                             WHERE s.naziv='" + letter + "' AND o.naziv='" + type + "' ORDER BY RAND() LIMIT 1;";*/
                 string sql = @"SELECT tekst, odgovor FROM pitanje 
                             INNER JOIN oblast o ON pitanje.oblast_id=o.id
                             INNER JOIN slovo s ON pitanje.slovo_id=s.id
@@ -55,9 +57,9 @@ namespace ZanimljivaGeografija
                 dataTable = databaseConnector.ExecuteQueryD(sql);
                 return dataTable;
             }
-            catch (Exception ex)
+            catch (MySqlException x)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                MessageBox.Show("Došlo je do greške: " + x);
             }
             return dataTable;
         }
@@ -113,28 +115,6 @@ namespace ZanimljivaGeografija
            
             DataTable dataTableBiljka = MakeQuery(letter, "biljka");
             SetQuestions(dataTableBiljka, out biljka, 5);
-            
-
-
-            /* DataTable dataTableDrzava = MakeQuery(letter, "drzava");
-                 if(dataTableDrzava != null && dataTableDrzava.Rows.Count > 0)
-                 {
-                     foreach (DataRow row in dataTableDrzava.Rows)
-                     {
-                         tb1.Text = row["tekst"].ToString();
-                         drzava = row["odgovor"].ToString();
-                     }
-                 }
-             DataTable dataTableGrad = MakeQuery(letter, "grad");
-             if (dataTableGrad != null && dataTableGrad.Rows.Count > 0)
-             {
-                 foreach (DataRow row in dataTableGrad.Rows)
-                 {
-                     tb2.Text = row["tekst"].ToString();
-                     grad = row["odgovor"].ToString();
-                 }
-             }*/
-
         }
         static char GetLetter(List<char> letters)
         {
@@ -170,7 +150,7 @@ namespace ZanimljivaGeografija
             }
             else
             {
-                string netacanOdgovor = "Pogresili ste pitanje broj 1. Tacan odgovor na pitanje je: " + drzava + "\n";
+                string netacanOdgovor = "Pogrešili ste pitanje broj 1. Tačan odgovor na pitanje je: " + drzava + "\n";
                 netacno += netacanOdgovor;
             }
             
@@ -199,7 +179,7 @@ namespace ZanimljivaGeografija
             }
             else
             {
-                string netacanOdgovor = "Pogresili ste pitanje broj 2. Tacan odgovor na pitanje je: " + grad + "\n";
+                string netacanOdgovor = "Pogrešili ste pitanje broj 2. Tačan odgovor na pitanje je: " + grad + "\n";
                 netacno += netacanOdgovor;
             }
 
@@ -227,7 +207,7 @@ namespace ZanimljivaGeografija
             }
             else
             {
-                string netacanOdgovor = "Pogresili ste pitanje broj 3. Tacan odgovor na pitanje je: " + reka + "\n";
+                string netacanOdgovor = "Pogrešili ste pitanje broj 3. Tačan odgovor na pitanje je: " + reka + "\n";
                 netacno += netacanOdgovor;
             }
 
@@ -255,7 +235,7 @@ namespace ZanimljivaGeografija
             }
             else
             {
-                string netacanOdgovor = "Pogresili ste pitanje broj 4. Tacan odgovor na pitanje je: " + zivotinja + "\n";
+                string netacanOdgovor = "Pogrešili ste pitanje broj 4. Tačan odgovor na pitanje je: " + zivotinja + "\n";
                 netacno += netacanOdgovor;
             }
 
@@ -283,7 +263,7 @@ namespace ZanimljivaGeografija
             }
             else
             {
-                string netacanOdgovor = "Pogresili ste pitanje broj 5. Tacan odgovor na pitanje je: " + biljka +"\n";
+                string netacanOdgovor = "Pogrešili ste pitanje broj 5. Tačan odgovor na pitanje je: " + biljka +"\n";
                 netacno += netacanOdgovor;
             }
 
@@ -291,12 +271,22 @@ namespace ZanimljivaGeografija
          
             if (count != 0)
             {
-                string sql = "INSERT INTO `odgovori`(`igrac_id`, `brojtacnih`) VALUES ('" + id + "','" + count + "');";
-                databaseConnector.ExecuteQuery(sql);
+                try
+                {
+                    string sql = "INSERT INTO `odgovori`(`igrac_id`, `brojtacnih`) VALUES ('" + id + "','" + count + "');";
+                    databaseConnector.ExecuteQuery(sql);
+                }
+                catch (MySqlException x)
+                {
+                    MessageBox.Show("Došlo je do greške: " + x);
+                }
             }
 
-            MessageBox.Show("Imate sledeci broj tacnih odgovora: " + count + "\n" + netacno);
-            
+            MessageBox.Show("Imate sledeći broj tačnih odgovora: " + count + "\n" + netacno);
+            GamerProfile gamerProfile = new GamerProfile();
+            gamerProfile.Show();
+            this.Close();
+
         }
     }
 }

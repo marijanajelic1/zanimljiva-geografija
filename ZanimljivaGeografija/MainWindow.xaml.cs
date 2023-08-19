@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing.Text;
 
 namespace ZanimljivaGeografija
 {
@@ -24,22 +25,27 @@ namespace ZanimljivaGeografija
         public MainWindow()
         {
             InitializeComponent();
+            SetCenter(this);
             dbConnector = ConnectorDb.Instance;
         }
 
+        private void SetCenter(Window window)
+        {
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+        }
         private void Login_Click(object sender, RoutedEventArgs e)
         {
              Login login= new Login();
-
              login.Show();
              this.Close();
+
 
         }
 
         private void Signup_Click(object sender, RoutedEventArgs e)
         {
             Signup signup = new Signup();
-
             signup.Show();
             this.Close();
         }

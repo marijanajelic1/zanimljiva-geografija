@@ -28,6 +28,13 @@ namespace ZanimljivaGeografija
         public Login()
         {
             InitializeComponent();
+            SetCenter(this);
+        }
+
+        private void SetCenter(Window window)
+        {
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
@@ -61,9 +68,6 @@ namespace ZanimljivaGeografija
                         }
                         int id1 = int.Parse(Application.Current.Properties["ID"].ToString());
                         Debug.WriteLine("Id je " + id1);
-                        /*  Game game = new Game();
-                          game.Show();
-                          this.Close();*/
                         if (type == 1)
                         {
                             GamerProfile gamerProfile = new GamerProfile();
@@ -83,7 +87,7 @@ namespace ZanimljivaGeografija
                     }
                 }catch(MySqlException x)
                 {
-                    MessageBox.Show("" + x);
+                    MessageBox.Show("Došlo je do greške: " + x);
                 }
             }
             tbUsername.Text = "";

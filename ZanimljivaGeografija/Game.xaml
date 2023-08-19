@@ -5,46 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZanimljivaGeografija"
         mc:Ignorable="d"
-        Title="Game" Height="450" Width="800">
+        Title="Game" Height="500" Width="850">
 
     <Grid>
-        
-        <Image Source="C:\Users\mjeli\source\repos\WpfApp1\WpfApp1\background.png" Stretch="UniformToFill" />
+
+        <Image Source="C:\Users\mjeli\source\repos\ZanimljivaGeografija\ZanimljivaGeografija\Resources\background.png" Stretch="UniformToFill" />
         
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel.Effect>
                 <DropShadowEffect ShadowDepth="3" Color="Black" Opacity="0.5" BlurRadius="5"/>
             </StackPanel.Effect>
             <StackPanel>
-                <TextBlock  Foreground="#aaabb8"  Name="tbZ" FontSize="20" FontWeight="Bold" Margin="0 0 0 5" TextWrapping="Wrap" />
+                <TextBlock  Foreground="#aaabb8"  Name="tbZ" FontFamily="Consolas" FontSize="20" FontWeight="Bold" Margin="0 0 0 5" TextWrapping="Wrap" />
             </StackPanel>
 
             <StackPanel Margin="0 0 0 5">
-                <TextBlock Name="tb1" FontSize="16" Foreground="#aaabb8"  Margin="0 0 0 10" TextWrapping="Wrap" />
-                <TextBox x:Name="tbAnswer1" Width="200" Height="25" Margin="0 0 0 5"/>
+                <TextBlock Name="tb1" FontFamily="Consolas" FontSize="16" Foreground="#aaabb8"  Margin="0 0 0 10" TextWrapping="Wrap" />
+                <TextBox x:Name="tbAnswer1" Background="Transparent" BorderThickness="2" FontFamily="Consolas" FontSize="16" Width="200" Height="25" Margin="0 0 0 5"/>
         </StackPanel>
 
         <StackPanel Margin="0 0 0 5">
-                <TextBlock Name="tb2" FontSize="16" Foreground="#aaabb8" Margin="0 0 0 10" TextWrapping="Wrap" />
-                <TextBox x:Name="tbAnswer2" Width="200" Height="25" Margin="0 0 0 5" />
+                <TextBlock Name="tb2" FontFamily="Consolas" FontSize="16" Foreground="#aaabb8" Margin="0 0 0 10" TextWrapping="Wrap" />
+                <TextBox x:Name="tbAnswer2" Background="Transparent" BorderThickness="2" FontFamily="Consolas" FontSize="16" Width="200" Height="25" Margin="0 0 0 5" />
         </StackPanel>
 
         <StackPanel Margin="0 0 0 5">
-                <TextBlock Name="tb3" FontSize="16" Foreground="#aaabb8"  Margin="0 0 0 10" TextWrapping="Wrap" />
-                <TextBox x:Name="tbAnswer3" Width="200" Height="25" Margin="0 0 0 5" />
+                <TextBlock Name="tb3" FontFamily="Consolas" FontSize="16" Foreground="#aaabb8"  Margin="0 0 0 10" TextWrapping="Wrap" />
+                <TextBox x:Name="tbAnswer3" Background="Transparent" BorderThickness="2" FontFamily="Consolas" FontSize="16" Width="200" Height="25" Margin="0 0 0 5" />
         </StackPanel>
 
         <StackPanel Margin="0 0 0 5">
-                <TextBlock Name="tb4" FontSize="16" Foreground="#aaabb8" Margin="0 0 0 10" TextWrapping="Wrap" />
-                <TextBox x:Name="tbAnswer4" Width="200" Height="25" Margin="0 0 0 5" />
+                <TextBlock Name="tb4" FontFamily="Consolas" FontSize="16" Foreground="#aaabb8" Margin="0 0 0 10" TextWrapping="Wrap" />
+                <TextBox x:Name="tbAnswer4" Background="Transparent" BorderThickness="2" FontFamily="Consolas" FontSize="16" Width="200" Height="25" Margin="0 0 0 5" />
         </StackPanel>
 
         <StackPanel Margin="0 0 0 5">
-                <TextBlock Name="tb5" FontSize="16" Foreground="#aaabb8" Margin="0 0 0 10" TextWrapping="Wrap"/>
-            <TextBox x:Name="tbAnswer5" Width="200" Height="25" Margin="0 0 0 5" />
+                <TextBlock Name="tb5" FontFamily="Consolas" FontSize="16" Foreground="#aaabb8" Margin="0 0 0 10" TextWrapping="Wrap"/>
+                <TextBox x:Name="tbAnswer5" Background="Transparent" BorderThickness="2" FontFamily="Consolas" FontSize="16" Width="200" Height="25" Margin="0 0 0 5" />
         </StackPanel>
 
-        <Button Content="Potvrdi" Width="100" Height="30" FontSize="18" Foreground="#25274D" Background="#2e9cca" Click="Button_Click"/>
+            <Button Content="Potvrdi" Width="100" Height="30" FontFamily="Consolas" FontSize="18" Foreground="#25274D" Background="#2e9cca" Click="Button_Click"/>
     </StackPanel>
 
 </Grid>

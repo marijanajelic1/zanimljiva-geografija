@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace ZanimljivaGeografija
         public AdminProfile()
         {
             InitializeComponent();
+            SetCenter(this);
             Name();
         }
         private void Name()
@@ -32,7 +34,7 @@ namespace ZanimljivaGeografija
             string sql = @"SELECT ime, prezime FROM profil 
                 INNER JOIN korisnik ON profil.korisnik_id=korisnik.id
                 WHERE korisnik_id='" + id + "';";
-            string fullName = "Dobrodosli ";
+            string fullName = "Dobrodošli ";
             try
             {
                 DataTable dataTable;
@@ -49,21 +51,32 @@ namespace ZanimljivaGeografija
                     }
                 }
             }
-            catch (Exception)
+            catch (MySqlException x)
             {
-
+                MessageBox.Show("Došlo je do greške: " + x);
             }
 
             tbD.Text = fullName;
         }
 
+        private void SetCenter(Window window)
+        {
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+        }
+
         private void CreateQuestion_Click(object sender, RoutedEventArgs e)
         {
-
+            CreateQuestion createQuestion = new CreateQuestion();
+            createQuestion.Show();
+            this.Close();
         }
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
-
+            Application.Current.Properties.Remove("ID");
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
     }
 }

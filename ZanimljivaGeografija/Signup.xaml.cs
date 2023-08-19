@@ -32,6 +32,13 @@ namespace ZanimljivaGeografija
         public Signup()
         {
             InitializeComponent();
+            SetCenter(this);
+        }
+
+        private void SetCenter(Window window)
+        {
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
         }
 
         private void Signup_Click(object sender, RoutedEventArgs e)
@@ -50,31 +57,41 @@ namespace ZanimljivaGeografija
 
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Niste lepo popunili zahtev.");
+                MessageBox.Show("Niste pravilno popunili zahtev.");
             }
             else
             {
-                string sql = "INSERT INTO `korisnik`(`username`, `password`, `tip_id`) VALUES('" + username + "', '" + password + "', '1'); ";
-                databaseConnector.ExecuteQuery(sql);
-                string sql1 = "SELECT `id` FROM `korisnik` WHERE `username` LIKE '" + username + "';";
+                string check= "SELECT `id` FROM `korisnik` WHERE `username` LIKE '" + username + "';";
                 try
                 {
-                    DataTable dataTable = databaseConnector.ExecuteQueryD(sql1);
-                    if (dataTable != null && dataTable.Rows.Count > 0)
+                    DataTable dataTableCheck = databaseConnector.ExecuteQueryD(check);
+                    if (dataTableCheck != null && dataTableCheck.Rows.Count > 0)
                     {
-                        DataRow row = dataTable.Rows[0];
-                        int id = Convert.ToInt32(row["id"]);
-
-                        sql= "INSERT INTO `profil`(`ime`, `prezime`, `email`, `telefon`, `korisnik_id`) VALUES('" + name + "', '" + surname + "', '" + email + "', '" + p + "', '" + id + "');";
+                        MessageBox.Show("Korisničko ime koje ste izabrali već postoji!");
+                    }
+                    else
+                    {
+                        string sql = "INSERT INTO `korisnik`(`username`, `password`, `tip_id`) VALUES('" + username + "', '" + password + "', '1'); ";
                         databaseConnector.ExecuteQuery(sql);
-                        MessageBox.Show("Uspesno ste kreirali profil");
-                        Login login = new Login();
-                        login.Show();
-                        this.Close();
+                        string sql1 = "SELECT `id` FROM `korisnik` WHERE `username` LIKE '" + username + "';";
+                        DataTable dataTable = databaseConnector.ExecuteQueryD(sql1);
+                        if (dataTable != null && dataTable.Rows.Count > 0)
+                        {
+                            DataRow row = dataTable.Rows[0];
+                            int id = Convert.ToInt32(row["id"]);
+
+                            sql = "INSERT INTO `profil`(`ime`, `prezime`, `email`, `telefon`, `korisnik_id`) VALUES('" + name + "', '" + surname + "', '" + email + "', '" + p + "', '" + id + "');";
+                            databaseConnector.ExecuteQuery(sql);
+                            MessageBox.Show("Uspešno ste kreirali profil.");
+                            Login login = new Login();
+                            SetCenter(login);
+                            login.Show();
+                            this.Close();
+                        }
                     }
                 }catch(MySqlException x)
                 {
-                    MessageBox.Show("" + x);
+                    MessageBox.Show("Došlo je do greške: " + x);
                 }
             }
             tbName.Text = "";

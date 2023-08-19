@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ZanimljivaGeografija
 {
@@ -16,13 +17,11 @@ namespace ZanimljivaGeografija
         private MySqlConnection msq;
         private string conString = "Server=127.0.0.1;Port=3306;Database=zanimljivageografija;Uid=root;";
 
-        // Private constructor to prevent external instantiation
         private ConnectorDb()
         {
             msq = new MySqlConnection(conString);
         }
 
-        // Public static property to access the single instance
         public static ConnectorDb Instance
         {
             get
@@ -35,7 +34,6 @@ namespace ZanimljivaGeografija
             }
         }
 
-        // Method to open the database connection
         public void OpenConnection()
         {
             if (msq.State == System.Data.ConnectionState.Closed)
@@ -43,7 +41,6 @@ namespace ZanimljivaGeografija
 
         }
 
-        // Method to close the database connection
         public void CloseConnection()
         {
             if (msq.State == System.Data.ConnectionState.Open)
@@ -59,12 +56,10 @@ namespace ZanimljivaGeografija
             }
             catch (Exception ex)
             {
-                // Handle exceptions or display an error message.
                 return false;
             }
         }
 
-        // Example method to execute a query
         public void ExecuteQuery(string query)
         {
             try
@@ -72,14 +67,13 @@ namespace ZanimljivaGeografija
                 OpenConnection();
 
                 MySqlCommand cmd = new MySqlCommand(query, msq);
-                // Execute your query here using cmd
                 int rowsAffected = cmd.ExecuteNonQuery();
                 Console.WriteLine($"Insert command: {rowsAffected} rows affected");
                 CloseConnection();
             }
             catch (Exception ex)
             {
-                // Handle exceptions appropriately
+                MessageBox.Show("Došlo je do greške: " + ex);
             }
         }
       
@@ -89,21 +83,18 @@ namespace ZanimljivaGeografija
 
             try
             {
-                // Open the database connection
                 OpenConnection();
 
-                // Execute the query and read the results into the DataTable
                 MySqlCommand cmd = new MySqlCommand(query, msq);
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
                 dataAdapter.Fill(dataTable);
 
-                // Close the database connection
                 CloseConnection();
             }
             catch (Exception ex)
             {
-                // Handle exceptions
-                Console.WriteLine("Error: " + ex.Message);
+
+                MessageBox.Show("Došlo je do greške: " + ex);
             }
 
             return dataTable;
