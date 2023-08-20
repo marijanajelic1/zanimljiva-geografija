@@ -65,12 +65,12 @@ namespace ZanimljivaGeografija
                         count = row["broj"].ToString();
                         if (!int.TryParse(count, out countInt))
                         {
-                            Debug.WriteLine("Greska");
+                            Debug.WriteLine("Greska prilikom parsiranja count u countInt");
                         }
                         answer = row["brtacnih"].ToString();
                         if (!int.TryParse(answer, out answerInt))
                         {
-                            Debug.WriteLine("Greska");
+                            Debug.WriteLine("Greska prilikom parsiranja answer u answerInt");
                         }
                     }
                 }
@@ -98,7 +98,7 @@ namespace ZanimljivaGeografija
             }
             catch (MySqlException x)
             {
-                MessageBox.Show("Došlo je do greške: " + x);
+                MessageBox.Show("Došlo je do greške tokom ispisa informacija o odradjenim testovima. Proverite bazu podataka i konekciju: " + x.ToString(), "Greška!");
             }
         }
 
@@ -167,7 +167,7 @@ namespace ZanimljivaGeografija
             }
             catch (MySqlException x)
             {
-                MessageBox.Show("Došlo je do greške: " + x);
+                MessageBox.Show("Došlo je do greške prilikom generisanja PDF sa informacijama iz baze. Proverite bazu podataka i konekciju: " + x.ToString(), "Greška!");
             }
 
         }

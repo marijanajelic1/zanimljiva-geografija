@@ -59,7 +59,7 @@ namespace ZanimljivaGeografija
             }
             catch (MySqlException x)
             {
-                MessageBox.Show("Došlo je do greške: " + x);
+                MessageBox.Show("Došlo je do greške prilikom izvršavanja SELECT upita. Proverite bazu podataka i konekciju: " + x.ToString(), "Greška!");
             }
             return dataTable;
         }
@@ -278,11 +278,11 @@ namespace ZanimljivaGeografija
                 }
                 catch (MySqlException x)
                 {
-                    MessageBox.Show("Došlo je do greške: " + x);
+                    MessageBox.Show("Došlo je do greške prilikom izvršavanja INSERT upita. Proverite bazu podataka i konekciju: " + x.ToString(), "Greška!");
                 }
             }
 
-            MessageBox.Show("Imate sledeći broj tačnih odgovora: " + count + "\n" + netacno);
+            MessageBox.Show("Imate sledeći broj tačnih odgovora: " + count + "\n" + netacno, "Rezultati");
             GamerProfile gamerProfile = new GamerProfile();
             gamerProfile.Show();
             this.Close();

@@ -49,7 +49,7 @@ namespace ZanimljivaGeografija
             phone = tbPhone.Text;
             if(!int.TryParse(phone, out p))
             {
-                Debug.WriteLine("Greska");
+                Debug.WriteLine("Greska prilikom parsiranja phone u p");
             }
             email = tbEmail.Text;
             username = tbUsername.Text;
@@ -57,7 +57,7 @@ namespace ZanimljivaGeografija
 
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Niste pravilno popunili zahtev.");
+                MessageBox.Show("Niste pravilno popunili zahtev.", "Greška!");
             }
             else
             {
@@ -67,7 +67,7 @@ namespace ZanimljivaGeografija
                     DataTable dataTableCheck = databaseConnector.ExecuteQueryD(check);
                     if (dataTableCheck != null && dataTableCheck.Rows.Count > 0)
                     {
-                        MessageBox.Show("Korisničko ime koje ste izabrali već postoji!");
+                        MessageBox.Show("Korisničko ime koje ste izabrali već postoji!", "Greška!");
                     }
                     else
                     {
@@ -82,7 +82,7 @@ namespace ZanimljivaGeografija
 
                             sql = "INSERT INTO `profil`(`ime`, `prezime`, `email`, `telefon`, `korisnik_id`) VALUES('" + name + "', '" + surname + "', '" + email + "', '" + p + "', '" + id + "');";
                             databaseConnector.ExecuteQuery(sql);
-                            MessageBox.Show("Uspešno ste kreirali profil.");
+                            MessageBox.Show("Uspešno ste kreirali profil.", "Uspeh");
                             Login login = new Login();
                             SetCenter(login);
                             login.Show();
@@ -91,7 +91,7 @@ namespace ZanimljivaGeografija
                     }
                 }catch(MySqlException x)
                 {
-                    MessageBox.Show("Došlo je do greške: " + x);
+                    MessageBox.Show("Došlo je do greške prilikom upisa podataka u bazu. Proverite bazu podataka i konekciju: " + x.ToString(), "Greška!");
                 }
             }
             tbName.Text = "";

@@ -68,12 +68,11 @@ namespace ZanimljivaGeografija
 
                 MySqlCommand cmd = new MySqlCommand(query, msq);
                 int rowsAffected = cmd.ExecuteNonQuery();
-                Console.WriteLine($"Insert command: {rowsAffected} rows affected");
                 CloseConnection();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Došlo je do greške: " + ex);
+                MessageBox.Show("Došlo je do greške, proverite vasu konekciju: " + ex.ToString(), "Greška!");
             }
         }
       
@@ -94,7 +93,7 @@ namespace ZanimljivaGeografija
             catch (Exception ex)
             {
 
-                MessageBox.Show("Došlo je do greške: " + ex);
+                MessageBox.Show("Došlo je do greške, proverite vasu konekciju: " + ex.ToString(), "Greška!");
             }
 
             return dataTable;
@@ -119,8 +118,7 @@ namespace ZanimljivaGeografija
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error during database initialization:");
-                Debug.WriteLine(ex.Message);
+                MessageBox.Show("Došlo je do greške prilikom instalacije baze: " + ex.ToString(), "Greška!");
             }
         }
     }

@@ -60,7 +60,7 @@ namespace ZanimljivaGeografija
             }
             catch (MySqlException x)
             {
-                MessageBox.Show("Došlo je do greške: " + x);
+                MessageBox.Show("Došlo je do greške prilikom učitavanja imena i prezimena. Proverite bazu podataka i konekciju: " + x.ToString(), "Greška!");
             }
 
             tbD.Text = fullName;

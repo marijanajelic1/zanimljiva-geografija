@@ -68,7 +68,7 @@ namespace ZanimljivaGeografija
             }
             catch (MySqlException x)
             {
-                MessageBox.Show("Došlo je do greške: " + x);
+                MessageBox.Show("Došlo je do greške prilikom učitavanja slova i oblasti. Proverite bazu podataka i konekciju: " + x.ToString(), "Greška!");
             }
             oblastBox.ItemsSource = oblast;
         }
@@ -87,7 +87,7 @@ namespace ZanimljivaGeografija
             }
             else
             {
-                MessageBox.Show("Izaberite slovo!");
+                MessageBox.Show("Izaberite slovo!", "Greška!");
             }
 
             if (oblastBox.SelectedItem != null)
@@ -96,7 +96,7 @@ namespace ZanimljivaGeografija
             }
             else
             {
-                MessageBox.Show("Izaberite oblast!");
+                MessageBox.Show("Izaberite oblast!", "Greška!");
             }
 
 
@@ -125,7 +125,7 @@ namespace ZanimljivaGeografija
                 question = tbQuestion.Text;
                 if (string.IsNullOrEmpty(question))
                 {
-                    MessageBox.Show("Unesite pitanje!");
+                    MessageBox.Show("Unesite pitanje!", "Greška!");
                 }
 
                 answer = tbAnswer.Text;
@@ -144,7 +144,7 @@ namespace ZanimljivaGeografija
                 }
                 else
                 {
-                    MessageBox.Show("Unesite odgovor!");
+                    MessageBox.Show("Unesite odgovor!", "Greška!");
                 }
 
                 string sql2 = "INSERT INTO `pitanje`(`tekst`, `odgovor`, `oblast_id`, `slovo_id`) VALUES ('" + question + "','" + answer + "','" + oblastId + "','" + letterId + "');";
@@ -153,9 +153,9 @@ namespace ZanimljivaGeografija
             }
             catch (MySqlException x)
             {
-                MessageBox.Show("Došlo je do greške: " + x);
+                MessageBox.Show("Došlo je do greške prilikom upisa pitanja u bazu podataka. Proverite bazu podataka i konekciju: " + x.ToString(), "Greška!");
             }
-            MessageBox.Show("Uspešno ste kreirali pitanje");
+            MessageBox.Show("Uspešno ste kreirali pitanje", "Uspeh");
             AdminProfile adminProfile = new AdminProfile();
             adminProfile.Show();
             this.Close();

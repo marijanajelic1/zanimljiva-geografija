@@ -47,7 +47,7 @@ namespace ZanimljivaGeografija
             string user;
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Niste lepo popunili zahtev.");
+                MessageBox.Show("Niste lepo popunili zahtev.", "Greška!");
             }
             else
             {
@@ -83,11 +83,11 @@ namespace ZanimljivaGeografija
                     }
                     else
                     {
-                        MessageBox.Show("Pogresan username ili password");
+                        MessageBox.Show("Pogresan username ili password", "Greška!");
                     }
                 }catch(MySqlException x)
                 {
-                    MessageBox.Show("Došlo je do greške: " + x);
+                    MessageBox.Show("Došlo je do greške prilikom logovanja. Proverite podatke u bazi i konekciju: " + x.ToString(), "Greška!");
                 }
             }
             tbUsername.Text = "";
