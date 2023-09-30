@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZanimljivaGeografija"
         mc:Ignorable="d"
-        Title="CreateQuestion" Height="500" Width="850">
+        Title="Dodavanje pitanja" Height="500" Width="850">
     <Grid Background="White">
 
         <Image Source="C:\Users\mjeli\source\repos\ZanimljivaGeografija\ZanimljivaGeografija\Resources\background.png" Stretch="UniformToFill" />
@@ -38,7 +38,9 @@
                 </StackPanel>
 
                 <Button Content="Dodaj" Width="100" Height="30" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" Foreground="#25274D" Background="#2e9cca" Click="AddQuestion_Click"/>
-
+                <StackPanel Margin="0 10 0 0">
+                    <Button Content="Nazad" Width="100" Height="30" FontFamily="Consolas" FontSize="18" Foreground="#25274D" Background="#2e9cca" Click="Back_Click"/>
+                </StackPanel>
             </StackPanel>
         </Border>
     </Grid>

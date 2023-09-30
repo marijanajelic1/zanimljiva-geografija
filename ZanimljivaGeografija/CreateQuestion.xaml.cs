@@ -36,7 +36,12 @@ namespace ZanimljivaGeografija
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
         }
-
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            AdminProfile adminProfile = new AdminProfile();
+            adminProfile.Show();
+            this.Close();
+        }
         private void SetInfo()
         {
             string sql = "SELECT naziv FROM slovo;";
@@ -150,12 +155,12 @@ namespace ZanimljivaGeografija
                 string sql2 = "INSERT INTO `pitanje`(`tekst`, `odgovor`, `oblast_id`, `slovo_id`) VALUES ('" + question + "','" + answer + "','" + oblastId + "','" + letterId + "');";
                 Debug.WriteLine(sql2);
                 databaseConnector.ExecuteQuery(sql2);
+                //MessageBox.Show("Uspešno ste kreirali pitanje", "Uspeh");
             }
             catch (MySqlException x)
             {
                 MessageBox.Show("Došlo je do greške prilikom upisa pitanja u bazu podataka. Proverite bazu podataka i konekciju: " + x.ToString(), "Greška!");
             }
-            MessageBox.Show("Uspešno ste kreirali pitanje", "Uspeh");
             AdminProfile adminProfile = new AdminProfile();
             adminProfile.Show();
             this.Close();
