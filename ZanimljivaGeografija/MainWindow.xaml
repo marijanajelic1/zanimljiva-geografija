@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Zanimljiva Geografija" Height="500" Width="850">
     <Grid Background="White">
-        <Image Source="C:\Users\mjeli\source\repos\ZanimljivaGeografija\ZanimljivaGeografija\Resources\mainbackground.png" Stretch="UniformToFill" />
+        <Image Source="/mainbackground.png" Stretch="UniformToFill" />
 
         <Border BorderBrush="#aaabb8" BorderThickness="1" CornerRadius="5" Padding="20" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Border.Effect>

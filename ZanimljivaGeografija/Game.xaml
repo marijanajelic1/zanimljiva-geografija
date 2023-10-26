@@ -9,7 +9,7 @@
 
     <Grid>
 
-        <Image Source="C:\Users\mjeli\source\repos\ZanimljivaGeografija\ZanimljivaGeografija\Resources\background.png" Stretch="UniformToFill" />
+        <Image Source="/background.png" Stretch="UniformToFill" />
         
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel.Effect>

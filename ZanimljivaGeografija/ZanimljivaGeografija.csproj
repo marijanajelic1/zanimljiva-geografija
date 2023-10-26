@@ -12,4 +12,9 @@
     <PackageReference Include="MySql.Data" Version="8.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Resource Include="background.png" />
+    <Resource Include="mainbackground.png" />
+  </ItemGroup>
+
 </Project>

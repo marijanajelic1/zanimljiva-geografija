@@ -8,7 +8,7 @@
         Title="Logovanje" Height="500" Width="850">
     <Grid Background="White">
 
-        <Image Source="C:\Users\mjeli\source\repos\ZanimljivaGeografija\ZanimljivaGeografija\Resources\background.png" Stretch="UniformToFill" />
+        <Image Source="/background.png" Stretch="UniformToFill" />
         <Border VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" Height="25">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="3" Color="Black" Opacity="0.5" BlurRadius="5"/>
